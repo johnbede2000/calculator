@@ -1,52 +1,40 @@
-function add(a,b) {
-    return a+b;
+//maths (using and returning numbers)
+function add(alpha,omega) {
+    return alpha+omega;
+}
+function subtract(alpha,omega) {
+    return alpha-omega;
+}
+function multiply(alpha,omega) {
+    return alpha*omega;
+}
+function divide(alpha,omega) {
+    return alpha/omega;
 }
 
-function subtract(a,b) {
-    return a-b;
-}
-
-function multiply(a,b) {
-    return a*b;
-}
-
-function divide(a,b) {
-    return a/b;
-}
-
+//global variables, initialised (strings)
 let operator = '';
 let a = '';
 let b = '';
 let display = document.querySelector('#display');
 display.textContent = '0';
 
-function operate(operator,a,b) {
-    if (operator==='add') {
-        display.textContent = add(parseInt(a),parseInt(b));
-        a = '';
-        b = '';
-        operator = '';
-    } else if (operator==='subtract') {
-        display.textContent = subtract(parseInt(a),parseInt(b));
-        a = '';
-        b = '';
-        operator = '';
-    } else if (operator==='multiply') {
-        display.textContent = multiply(parseInt(a),parseInt(b));
-        a = '';
-        b = '';
-        operator = '';
-    } else if (operator==='divide') {
-        display.textContent = divide(parseInt(a),parseInt(b));
-        a = '';
-        b = '';
-        operator = '';
-    } else display.textContent = 'Error';
+//operate (returns a number)
+function operate(op,x,y) {
+    if (op==='add') {
+        return add(parseInt(x),parseInt(y));
+    } else if (op==='subtract') {
+        return subtract(parseInt(x),parseInt(y));
+    } else if (op==='multiply') {
+        return multiply(parseInt(x),parseInt(y));
+    } else if (op==='divide') {
+        return divide(parseInt(x),parseInt(y));
+    } else display.textContent = 'Bug';
 }
 
+//click number
 let numbers = document.querySelectorAll('.number')
 numbers.forEach(btn => btn.addEventListener('click', clickNumber));
-
 function clickNumber(e) {
     if (operator === '') {
         a += e.target.textContent;
@@ -57,13 +45,28 @@ function clickNumber(e) {
     }
 }
 
+//click operator
 let operators = document.querySelectorAll('.operator');
-operators.forEach(btn => btn.addEventListener('click', (e) => operator = e.target.getAttribute('id')));
+operators.forEach(btn => btn.addEventListener('click', clickOperator));
+function clickOperator(e) {
+    if (b !== '') { // if this is an additional operation
+        let answer = operate(operator,a,b);
+        a = answer.toString();
+        b = '';
+        display.textContent = a;
+    }
+    operator = e.target.getAttribute('id');
+}
 
-document.querySelector('#equals').addEventListener('click', () => operate(operator,a,b))
+//click equal
+document.querySelector('#equals').addEventListener('click', performEqual);
+function performEqual() {
+    let answer = operate(operator,a,b); // a number
+    display.textContent = answer.toString();
+}
 
+//click clear
 document.querySelector('#clear').addEventListener('click', () => clear());
-
 function clear() {
     a = '';
     b = '';
