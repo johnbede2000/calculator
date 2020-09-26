@@ -29,7 +29,7 @@ function operate(op,x,y) {
         return multiply(parseInt(x),parseInt(y));
     } else if (op==='divide') {
         return divide(parseInt(x),parseInt(y));
-    } else display.textContent = 'Bug';
+    } else display.textContent = a;
 }
 
 //click number
@@ -61,8 +61,14 @@ function clickOperator(e) {
 //click equal
 document.querySelector('#equals').addEventListener('click', performEqual);
 function performEqual() {
-    let answer = operate(operator,a,b); // a number
-    display.textContent = answer.toString();
+    if (a === '') {
+        return;  
+    } else if (b === '') {
+        display.textContent = a;
+    } else {
+        let answer = operate(operator,a,b); // a number
+        display.textContent = answer.toString();
+    }
 }
 
 //click clear
