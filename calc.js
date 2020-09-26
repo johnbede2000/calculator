@@ -27,6 +27,8 @@ function operate(op,x,y) {
         return subtract(parseInt(x),parseInt(y));
     } else if (op==='multiply') {
         return multiply(parseInt(x),parseInt(y));
+    } else if (op==='divide' && b==='0') {
+        display.textContent = 'Infinity! 😲'
     } else if (op==='divide') {
         return divide(parseInt(x),parseInt(y));
     } else display.textContent = a;
