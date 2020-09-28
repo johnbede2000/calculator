@@ -53,6 +53,7 @@ operators.forEach(btn => btn.addEventListener('click', clickOperator));
 function clickOperator(e) {
     if (b !== '') { // if this is an additional operation
         let answer = operate(operator,a,b);
+        answer = Math.round(answer * 1000000) / 1000000; // six decimal places
         a = answer.toString();
         b = '';
         display.textContent = a;
@@ -69,6 +70,7 @@ function performEqual() {
         display.textContent = a;
     } else {
         let answer = operate(operator,a,b); // a number
+        answer = Math.round(answer * 1000000) / 1000000; // six decimal places
         display.textContent = answer.toString();
     }
 }
