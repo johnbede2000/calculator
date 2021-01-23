@@ -76,7 +76,7 @@ function performEqual() {
 }
 
 //click clear
-document.querySelector('#clear').addEventListener('click', () => clear);
+document.querySelector('#clear').addEventListener('click', clear);
 function clear() {
     a = '';
     b = '';
