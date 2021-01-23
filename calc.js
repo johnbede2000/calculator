@@ -79,8 +79,15 @@ function performEqual() {
 //click clear
 document.querySelector('#clear').addEventListener('click', clear);
 function clear() {
+<<<<<<< HEAD
   a = '';
   b = '';
   display.textContent = '0';
   operator = '';
+=======
+    a = '';
+    b = '';
+    display.textContent = '0';
+    operator = '';
+>>>>>>> 95a1ac18442cf838d8aefd023a7c7d32d2d09cd1
 }
